@@ -7,13 +7,15 @@ using KSerialization;
 namespace BrisInfiniteSources
 {
 	[SerializationConfig(MemberSerialization.OptIn)]
-	public class InfiniteSource : KMonoBehaviour, ISaveLoadable, ISingleSliderControl
-	{
+    public class InfiniteSource : KMonoBehaviour, ISaveLoadable, ISingleSliderControl
+    {
         [MyCmpGet]
         internal Storage storage;
         private static StatusItem filterStatusItem = null;
         public const int MinAllowedTemperature = 1;
 		public const int MaxAllowedTemperature = 7500;
+        [MyCmpGet]
+        protected Operational operational;
         [SerializeField]
 		public ConduitType Type;
         [Serialize]
@@ -26,6 +28,10 @@ namespace BrisInfiniteSources
 		private HandleVector<int>.Handle accumulator = HandleVector<int>.InvalidHandle;
 		private int outputCell = -1;
         public SimHashes FilteredElement { get; private set; } = SimHashes.Void;
+        private ISingleSliderControl mySlider;
+            
+
+        private bool inUpdate = false;
         protected override void OnPrefabInit()
 		{
 			base.OnPrefabInit();
@@ -35,10 +41,13 @@ namespace BrisInfiniteSources
 		}
         protected override void OnSpawn()
 		{
-			base.OnSpawn();
+            base.OnSpawn();
+            operational.SetActive(operational.IsOperational, false);
             var building = GetComponent<Building>();
 			outputCell = building.GetUtilityOutputCell();
             Conduit.GetFlowManager(Type).AddConduitUpdater(ConduitUpdate);
+            mySlider = (ISingleSliderControl)this;
+            
             OnFilterChanged(ElementLoader.FindElementByHash(FilteredElement).tag);
 			filterable.onFilterChanged += new Action<Tag>(OnFilterChanged);
             
@@ -65,7 +74,7 @@ namespace BrisInfiniteSources
 		private bool IsOperational
 		{
 			get
-			{
+			{ Debug.Log("Is Operational: " + (IsValidFilter && GetComponent<Operational>().IsOperational) + "  IsValidFilter: " + IsValidFilter + "2nd IsOperational: " + GetComponent<Operational>().IsOperational);
                 return IsValidFilter && GetComponent<Operational>().IsOperational;
 			}
 		}
@@ -97,7 +106,7 @@ namespace BrisInfiniteSources
 			}
 		}
 
-		private bool inUpdate = false;
+       
 
 		private void OnFilterChanged(Tag tag)
 		{
@@ -112,7 +121,7 @@ namespace BrisInfiniteSources
 			Temp = Math.Min(Temp, element.highTemp);
 			Temp = Math.Max(Temp, MinAllowedTemperature);
 			Temp = Math.Min(Temp, MaxAllowedTemperature);
-			SetSliderValue(Temp, -1);
+            mySlider.SetSliderValue(Temp, -1);
 			if (DetailsScreen.Instance != null && !inUpdate)
 			{
 				inUpdate = true;
@@ -176,12 +185,15 @@ namespace BrisInfiniteSources
 		}
 
         private void ConduitUpdate(float dt)
-		{
+        {
+            operational.SetActive(operational.IsOperational, false);
+
             if (Type == ConduitType.Solid)
             {
                 var sFlow = SolidConduit.GetFlowManager();
                 if (sFlow == null || !sFlow.HasConduit(outputCell) || !IsOperational)
                 {
+                    
                     return;
                 }
                 storage.AddOre(FilteredElement, Flow / InfiniteSourceFlowControl.GramsPerKilogram, Temp, 0, 0, false, false);
@@ -198,60 +210,73 @@ namespace BrisInfiniteSources
                 {
                     return;
                 }
-
                 var delta = flowManager.AddElement(outputCell, FilteredElement, Flow / InfiniteSourceFlowControl.GramsPerKilogram, Temp, 0, 0);
                 Game.Instance.accumulators.Accumulate(accumulator, delta);
             }
 		}
+        int ISliderControl.SliderDecimalPlaces(int index)
+        {
+            return 1;
+        }
 
-		public int SliderDecimalPlaces(int index)
-		{
-			return 1;
-		}
+        float ISliderControl.GetSliderMin(int index)
+        {
+            Element element = ElementLoader.GetElement(FilteredTag);
+            if (element == null)
+            {
+                return 0.0f;
+            }
+            return Math.Max(element.lowTemp, MinAllowedTemperature);
+        }
 
-		public float GetSliderMin(int index)
-		{
-			Element element = ElementLoader.GetElement(FilteredTag);
-			if (element == null)
-			{
-				return 0.0f;
-			}
-			return Math.Max(element.lowTemp, MinAllowedTemperature);
-		}
+        float ISliderControl.GetSliderMax(int index)
+        {
+            Element element = ElementLoader.GetElement(FilteredTag);
+            if (element == null)
+            {
+                return 100.0f;
+            }
+            return Math.Min(element.highTemp, MaxAllowedTemperature);
+        }
 
-		public float GetSliderMax(int index)
-		{
-			Element element = ElementLoader.GetElement(FilteredTag);
-			if (element == null)
-			{
-				return 100.0f;
-			}
-			return Math.Min(element.highTemp, MaxAllowedTemperature);
-		}
+        float ISliderControl.GetSliderValue(int index)
+        {
+            return Temp;
+        }
 
-		public float GetSliderValue(int index)
-		{
-			return Temp;
-		}
+        void ISliderControl.SetSliderValue(float percent, int index)
+        {
+            Temp = percent;
+        }
 
-		public void SetSliderValue(float percent, int index)
-		{
-			Temp = percent;
-		}
-
-		public string GetSliderTooltipKey(int index)
-		{
-			switch (Type)
-			{
-				case ConduitType.Gas:
-					return "STRINGS.UI.UISIDESCREENS.GASSOURCE.TOOLTIP";
-				case ConduitType.Liquid:
-					return "STRINGS.UI.UISIDESCREENS.LIQUIDSOURCE.TOOLTIP";
+        string ISliderControl.GetSliderTooltipKey(int index)
+        {
+            switch (Type)
+            {
+                case ConduitType.Gas:
+                    return "STRINGS.UI.UISIDESCREENS.GASSOURCE.TOOLTIP";
+                case ConduitType.Liquid:
+                    return "STRINGS.UI.UISIDESCREENS.LIQUIDSOURCE.TOOLTIP";
                 case ConduitType.Solid:
                     return "STRINGS.UI.UISIDESCREENS.SOLIDSOURCE.TOOLTIP";
                 default:
-					throw new Exception("Invalid ConduitType provided to InfiniteSource: " + Type.ToString());
-			}
-		}
-	}
+                    throw new Exception("Invalid ConduitType provided to InfiniteSource: " + Type.ToString());
+            }
+        }
+
+        string ISliderControl.GetSliderTooltip()
+        {
+            switch (Type)
+            {
+                case ConduitType.Gas:
+                    return "STRINGS.UI.UISIDESCREENS.GASSOURCE.TOOLTIP";
+                case ConduitType.Liquid:
+                    return "STRINGS.UI.UISIDESCREENS.LIQUIDSOURCE.TOOLTIP";
+                case ConduitType.Solid:
+                    return "STRINGS.UI.UISIDESCREENS.SOLIDSOURCE.TOOLTIP";
+                default:
+                    throw new Exception("Invalid ConduitType provided to InfiniteSource: " + Type.ToString());
+            }
+        }
+    }
 }

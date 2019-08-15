@@ -9,40 +9,62 @@ namespace BrisInfiniteSources
 		public const string FlowTitle = "Flow rate";
 		public const string FlowTooltip = "Flow rate";
 		public const int GramsPerKilogram = 1000;
+        private IIntSliderControl mySlider;
 
-		public string SliderTitleKey => "STRINGS.UI.UISIDESCREENS.INFINITESOURCE.FLOW.TITLE";
 
-		public string SliderUnits => UI.UNITSUFFIXES.MASS.GRAM + "/" + UI.UNITSUFFIXES.SECOND;
+		string ISliderControl.SliderUnits
+        {
+            get { return UI.UNITSUFFIXES.MASS.GRAM + "/" + UI.UNITSUFFIXES.SECOND; }
+        }
 
-		public float GetSliderMax(int index)
+
+
+        float ISliderControl.GetSliderMax(int index)
 		{
 			var flowManager = Conduit.GetFlowManager(GetComponent<InfiniteSource>().Type);
 			return Traverse.Create(flowManager).Field("MaxMass").GetValue<float>() * GramsPerKilogram;
 		}
 
-		public float GetSliderMin(int index)
+		float ISliderControl.GetSliderMin(int index)
 		{
 			return 0;
 		}
 
-		public string GetSliderTooltipKey(int index)
+        string ISliderControl.SliderTitleKey
+        {
+            get
+            {
+                return "STRINGS.UI.UISIDESCREENS.INFINITESOURCE.FLOW.TITLE";
+            }
+        }
+
+
+        string ISliderControl.GetSliderTooltipKey(int index)
 		{
 			return "STRINGS.UI.UISIDESCREENS.INFINITESOURCE.FLOW.TOOLTIP";
 		}
 
-		public float GetSliderValue(int index)
+		float ISliderControl.GetSliderValue(int index)
 		{
 			return GetComponent<InfiniteSource>().Flow;
 		}
 
-		public void SetSliderValue(float percent, int index)
+		void ISliderControl.SetSliderValue(float percent, int index)
 		{
 			GetComponent<InfiniteSource>().Flow = percent;
 		}
 
-		public int SliderDecimalPlaces(int index)
+		int ISliderControl.SliderDecimalPlaces(int index)
 		{
 			return 0;
 		}
-	}
+
+
+        string ISliderControl.GetSliderTooltip()
+        {
+            return "STRINGS.UI.UISIDESCREENS.INFINITESOURCE.FLOW.TOOLTIP";
+        }
+
+
+    }
 }

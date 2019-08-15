@@ -6,8 +6,10 @@ namespace BrisInfiniteSources
 	{
 		[SerializeField]
 		public ConduitType Type;
+        [MyCmpGet]
+        protected Operational operational;
 
-		private HandleVector<int>.Handle accumulator = HandleVector<int>.InvalidHandle;
+        private HandleVector<int>.Handle accumulator = HandleVector<int>.InvalidHandle;
 		private int inputCell;
 
 		protected override void OnPrefabInit()
@@ -18,9 +20,11 @@ namespace BrisInfiniteSources
 
 		protected override void OnSpawn()
 		{
-			base.OnSpawn();
+             
 
-			var building = GetComponent<Building>();
+            base.OnSpawn();
+            operational.SetActive(operational.IsOperational, false);
+            var building = GetComponent<Building>();
 			inputCell = building.GetUtilityInputCell();
 
 			Conduit.GetFlowManager(Type).AddConduitUpdater(ConduitUpdate);
@@ -47,19 +51,23 @@ namespace BrisInfiniteSources
              {
                 var sFlow = SolidConduit.GetFlowManager();
                 if (sFlow == null || !sFlow.HasConduit(inputCell) || !IsOperational)
-                { return; }
-                if (sFlow.IsConduitEmpty(inputCell)) { return; }
+                { operational.SetActive(false, false); ;  return; }
+                if (sFlow.IsConduitEmpty(inputCell)) {  operational.SetActive(false,false); return; }
+                operational.SetActive(true,false);
                 var pickupable = sFlow.RemovePickupable(inputCell);
                 pickupable.DeleteObject();
             }
             else
             {
+                
                 var flowManager = Conduit.GetFlowManager(Type);
-                if (flowManager == null || !flowManager.HasConduit(inputCell) || !IsOperational)
+                
+                if (flowManager == null || !flowManager.HasConduit(inputCell) || !IsOperational || flowManager.IsConduitEmpty(inputCell))
                 {
+                    operational.SetActive(false, false);
                     return;
                 }
-
+                operational.SetActive(true, false);
                 var contents = flowManager.GetContents(inputCell);
                 flowManager.RemoveElement(inputCell, contents.mass);
                 Game.Instance.accumulators.Accumulate(accumulator, contents.mass);

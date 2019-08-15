@@ -39,6 +39,7 @@ namespace BrisInfiniteSources
             buildingDef.RequiresPowerInput = false;
             buildingDef.RequiresPowerOutput = true;
             buildingDef.Entombable = false;
+            buildingDef.Floodable = false;
             buildingDef.PowerOutputOffset = new CellOffset(0, 0);
             SoundEventVolumeCache.instance.AddVolume("batterysm_kanim", "Battery_sm_rattle", TUNING.NOISE_POLLUTION.NOISY.TIER2);
             
