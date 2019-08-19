@@ -39,6 +39,7 @@ namespace BrisInfiniteSources
             accumulator = Game.Instance.accumulators.Add("Source", this);
 			InitializeStatusItems();
 		}
+
         protected override void OnSpawn()
 		{
             base.OnSpawn();
@@ -47,7 +48,7 @@ namespace BrisInfiniteSources
 			outputCell = building.GetUtilityOutputCell();
             Conduit.GetFlowManager(Type).AddConduitUpdater(ConduitUpdate);
             mySlider = (ISingleSliderControl)this;
-            
+           
             OnFilterChanged(ElementLoader.FindElementByHash(FilteredElement).tag);
 			filterable.onFilterChanged += new Action<Tag>(OnFilterChanged);
             
@@ -74,8 +75,7 @@ namespace BrisInfiniteSources
 		private bool IsOperational
 		{
 			get
-			{ Debug.Log("Is Operational: " + (IsValidFilter && GetComponent<Operational>().IsOperational) + "  IsValidFilter: " + IsValidFilter + "2nd IsOperational: " + GetComponent<Operational>().IsOperational);
-                return IsValidFilter && GetComponent<Operational>().IsOperational;
+			{   return IsValidFilter && GetComponent<Operational>().IsOperational;
 			}
 		}
 
@@ -110,7 +110,9 @@ namespace BrisInfiniteSources
 
 		private void OnFilterChanged(Tag tag)
 		{
-			FilteredTag = tag;
+            mySlider = (ISingleSliderControl)this;
+
+            FilteredTag = tag;
 			Element element = ElementLoader.GetElement(FilteredTag);
 			if (element != null)
 			{
@@ -137,7 +139,9 @@ namespace BrisInfiniteSources
 		[OnDeserialized]
 		private void OnDeserialized()
 		{
-			if (ElementLoader.GetElement(FilteredTag) == null)
+            
+
+            if (ElementLoader.GetElement(FilteredTag) == null)
 				return;
 			filterable.SelectedTag = FilteredTag;
 			OnFilterChanged(FilteredTag);

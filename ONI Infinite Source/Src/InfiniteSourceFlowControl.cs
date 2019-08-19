@@ -1,10 +1,12 @@
 ﻿using System;
 using Harmony;
 using STRINGS;
+using KSerialization;
 
 namespace BrisInfiniteSources
 {
-	public class InfiniteSourceFlowControl : KMonoBehaviour, IIntSliderControl
+    [SerializationConfig(MemberSerialization.OptIn)]
+    public class InfiniteSourceFlowControl : KMonoBehaviour, IIntSliderControl
 	{
 		public const string FlowTitle = "Flow rate";
 		public const string FlowTooltip = "Flow rate";

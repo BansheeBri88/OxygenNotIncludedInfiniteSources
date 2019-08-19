@@ -1,9 +1,11 @@
 ﻿using TUNING;
 using UnityEngine;
+using KSerialization;
 
 namespace BrisInfiniteSources
 {
-	public class InfiniteGasSourceConfig : IBuildingConfig
+    [SerializationConfig(MemberSerialization.OptIn)]
+    public class InfiniteGasSourceConfig : IBuildingConfig
 	{
 		public const string Id = "BriGasSource";
 		public const string DisplayName = "Bri's Infinite Gas Source";

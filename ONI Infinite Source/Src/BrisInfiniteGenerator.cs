@@ -6,7 +6,7 @@ using UnityEngine;
 namespace BrisInfiniteSources
 {
     [SerializationConfig(MemberSerialization.OptIn)]
-    internal class BrisInfiniteGenerator : Generator
+    internal class BrisInfiniteGenerator : Generator, ISliderControl
     {
         [SerializeField]
         public int powerDistributionOrder;
@@ -49,6 +49,42 @@ namespace BrisInfiniteSources
                 base.EnergySim200ms(dt);
                 this.ApplyDeltaJoules(this.WattageRating * dt, false);
             }
+
+        public int SliderDecimalPlaces(int index)
+        {
+            return 0;
+        }
+
+        public float GetSliderMin(int index)
+        {
+            return 0;
+        }
+
+        public float GetSliderMax(int index)
+        {
+            return 100;
+        }
+
+        public float GetSliderValue(int index)
+        {
+            return 50;
+        }
+
+        public void SetSliderValue(float percent, int index)
+        {
+            
+        }
+
+        public string GetSliderTooltipKey(int index)
+        {
+            return "A Useless Slider";
+        }
+
+        public string GetSliderTooltip()
+        {
+            return "A Useless Slider";
+        }
+
         public float AmountStored
         {
             get
@@ -57,5 +93,8 @@ namespace BrisInfiniteSources
             }
         }
 
+        public string SliderTitleKey => throw new NotImplementedException();
+
+        public string SliderUnits => throw new NotImplementedException();
     }
 }
