@@ -1,0 +1,319 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{05B76B2B-4DE1-4E67-827B-662BFCA89D8A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BrisInfiniteSources</RootNamespace>
+    <AssemblyName>BrisInfiniteSources</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="AutoFridge.cs" />
+    <Compile Include="AutoFridgeConfig.cs" />
+    <Compile Include="AutoStorage.cs" />
+    <Compile Include="AutoStorageConfig.cs" />
+    <Compile Include="BrisArt.cs" />
+    <Compile Include="BrisArtConfig.cs" />
+    <Compile Include="BrisArtLight.cs" />
+    <Compile Include="BrisArtLightConfig.cs" />
+    <Compile Include="BrisArtNightLight.cs" />
+    <Compile Include="BrisArtNightLightConfig.cs" />
+    <Compile Include="BrisInfiniteBateryConfig.cs" />
+    <Compile Include="BrisInfiniteBattery.cs" />
+    <Compile Include="BrisInfiniteGenerator.cs" />
+    <Compile Include="BrisInfiniteGeneratorConfig.cs" />
+    <Compile Include="BrisLight.cs" />
+    <Compile Include="BrisLightConfig.cs" />
+    <Compile Include="ConveyorDuplicator.cs" />
+    <Compile Include="ConveyorDuplicatorConfig.cs" />
+    <Compile Include="InfiniteGasSinkConfig.cs" />
+    <Compile Include="InfiniteGasSourceConfig.cs" />
+    <Compile Include="InfiniteLiquidSinkConfig.cs" />
+    <Compile Include="InfiniteLiquidSourceConfig.cs" />
+    <Compile Include="InfiniteSink.cs" />
+    <Compile Include="InfiniteSolidSinkConfig.cs" />
+    <Compile Include="InfiniteSolidSourceConfig.cs" />
+    <Compile Include="InfiniteSource.cs" />
+    <Compile Include="InfiniteSourceFlowControl.cs" />
+    <Compile Include="InfiniteSourceSinkPatches.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="ArabicSupport">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\ArabicSupport.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
+    </Reference>
+    <Reference Include="I18N">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\I18N.dll</HintPath>
+    </Reference>
+    <Reference Include="I18N.West">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\I18N.West.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Posix">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\Mono.Posix.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Security">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel.Internals, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\System.ServiceModel.Internals.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AccessibilityModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.AccessibilityModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AIModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.AIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ARModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.ARModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.BaselibModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.BaselibModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClothModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.ClothModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterInputModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.ClusterInputModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterRendererModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.ClusterRendererModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CrashReportingModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.CrashReportingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.DirectorModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.DirectorModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.FileSystemHttpModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.FileSystemHttpModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.GameCenterModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.GameCenterModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.GridModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.GridModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.HotReloadModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.HotReloadModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.InputModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.JSONSerializeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.LocalizationModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.LocalizationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.ParticleSystemModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PerformanceReportingModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.PerformanceReportingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Physics2DModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.Physics2DModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ProfilerModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.ProfilerModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ScreenCaptureModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.ScreenCaptureModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SharedInternalsModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.SharedInternalsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpatialTracking">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.SpatialTracking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteMaskModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.SpriteMaskModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteShapeModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.SpriteShapeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.StreamingModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.StreamingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.StyleSheetsModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.StyleSheetsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SubstanceModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.SubstanceModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.TerrainModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainPhysicsModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.TextCoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TilemapModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.TilemapModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Timeline">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.Timeline.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TimelineModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.TimelineModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TLSModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.TLSModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIElementsModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.UIElementsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UmbraModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.UmbraModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UNETModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.UNETModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityAnalyticsModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityConnectModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.UnityConnectModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityTestProtocolModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.UnityWebRequestModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VehiclesModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.VehiclesModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VFXModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.VFXModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VideoModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.VideoModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VRModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.VRModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.WindModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.WindModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.XRModule">
+      <HintPath>..\..\..\..\..\..\..\Games\Oxygen Not Included Automation Pack\OxygenNotIncluded_Data\Managed\UnityEngine.XRModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>mkdir "%25homepath%25\Documents\Klei\OxygenNotIncluded\mods\dev\$(ProjectName)"
+IF EXIST "$(ProjectDir)\anim" (mkdir "%25homepath%25\Documents\Klei\OxygenNotIncluded\mods\dev\$(ProjectName)\anim")
+copy "$(TargetPath)" "%25homepath%25\Documents\Klei\OxygenNotIncluded\mods\dev\$(ProjectName)"
+IF EXIST  "$(TargetPath)*.json" ( copy "$(TargetPath)*.json" "%25homepath%25\Documents\Klei\OxygenNotIncluded\mods\dev\$(ProjectName)" )
+IF EXIST  "$(TargetPath)*.txt" ( copy "$(TargetPath)*.txt" "%25homepath%25\Documents\Klei\OxygenNotIncluded\mods\dev\$(ProjectName)" )
+IF EXIST  "$(ProjectDir)\anim" ( xcopy "$(ProjectDir)\anim" "%25homepath%25\Documents\Klei\OxygenNotIncluded\mods\dev\$(ProjectName)\anim" /S /Y )
+IF EXIST  "$(ProjectDir)\preview.png" ( copy "$(ProjectDir)\preview.png" "%25homepath%25\Documents\Klei\OxygenNotIncluded\mods\dev\$(ProjectName)\preview.png" )</PostBuildEvent>
+  </PropertyGroup>
+</Project>

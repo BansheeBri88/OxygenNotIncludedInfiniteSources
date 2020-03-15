@@ -39,7 +39,8 @@ namespace BrisInfiniteSources
 			buildingDef.AudioCategory = "HollowMetal";
 			buildingDef.UtilityOutputOffset = new CellOffset(0, 0);
             buildingDef.PermittedRotations = PermittedRotations.R360;
-			return buildingDef;
+            buildingDef.LogicInputPorts = LogicOperationalController.CreateSingleInputPortList(new CellOffset(0, 0));
+            return buildingDef;
             
 		}
 
@@ -58,28 +59,18 @@ namespace BrisInfiniteSources
             storage.showDescriptor = true;
             storage.fetchCategory = Storage.FetchCategory.GeneralStorage;
             List<Tag> tagList = new List<Tag>();
-            tagList.AddRange((IEnumerable<Tag>)STORAGEFILTERS.NOT_EDIBLE_SOLIDS);
-            tagList.AddRange((IEnumerable<Tag>)STORAGEFILTERS.FOOD);
+            tagList.AddRange(STORAGEFILTERS.NOT_EDIBLE_SOLIDS);
+            tagList.AddRange(STORAGEFILTERS.FOOD);
             storage.storageFilters = tagList;
             CopyBuildingSettings copyBuildingSettings = go.AddOrGet<CopyBuildingSettings>();
             copyBuildingSettings.copyGroupTag = GameTags.StorageLocker;
             go.AddOrGet<SolidConduitDispenser>();
         }
 
-        
-        public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
-        {
-            GeneratedBuildings.RegisterLogicPorts(go, LogicOperationalController.INPUT_PORTS_0_1);
-        }
 
-        public override void DoPostConfigureUnderConstruction(GameObject go)
-        {
-            GeneratedBuildings.RegisterLogicPorts(go, LogicOperationalController.INPUT_PORTS_0_1);
-        }
 
         public override void DoPostConfigureComplete(GameObject go)
         {
-            GeneratedBuildings.RegisterLogicPorts(go, LogicOperationalController.INPUT_PORTS_0_1);
             go.AddOrGet<LogicOperationalController>();
             go.AddOrGet<Operational>();
             go.AddOrGetDef<StorageController.Def>();
