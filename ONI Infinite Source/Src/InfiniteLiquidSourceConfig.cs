@@ -38,6 +38,7 @@ namespace BrisInfiniteSources
 			buildingDef.AudioCategory = "HollowMetal";
 			buildingDef.UtilityOutputOffset = new CellOffset(0, 0);
             buildingDef.PermittedRotations = PermittedRotations.R360;
+			buildingDef.LogicInputPorts = LogicOperationalController.CreateSingleInputPortList(new CellOffset(0, 0));
 			return buildingDef;
 		}
 
@@ -48,19 +49,10 @@ namespace BrisInfiniteSources
 			go.AddOrGet<InfiniteSource>().Type = ConduitType.Liquid;
 		}
 
-        public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
-        {
-            GeneratedBuildings.RegisterLogicPorts(go, LogicOperationalController.INPUT_PORTS_0_1);
-        }
 
-        public override void DoPostConfigureUnderConstruction(GameObject go)
-        {
-            GeneratedBuildings.RegisterLogicPorts(go, LogicOperationalController.INPUT_PORTS_0_1);
-        }
 
         public override void DoPostConfigureComplete(GameObject go)
 		{
-            GeneratedBuildings.RegisterLogicPorts(go, LogicOperationalController.INPUT_PORTS_0_1);
             go.AddOrGet<LogicOperationalController>();
             go.AddOrGet<Operational>();
 

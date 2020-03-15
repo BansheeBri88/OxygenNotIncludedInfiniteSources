@@ -42,7 +42,7 @@ namespace BrisInfiniteSources
             buildingDef.Floodable = false;
             buildingDef.PowerOutputOffset = new CellOffset(0, 0);
             SoundEventVolumeCache.instance.AddVolume("batterysm_kanim", "Battery_sm_rattle", TUNING.NOISE_POLLUTION.NOISY.TIER2);
-            
+            buildingDef.LogicInputPorts = LogicOperationalController.CreateSingleInputPortList(new CellOffset(0, 0));
             return buildingDef;
         }
 
@@ -70,7 +70,6 @@ namespace BrisInfiniteSources
         public override void DoPostConfigureComplete(GameObject go)
         {
             
-            GeneratedBuildings.RegisterLogicPorts(go, LogicOperationalController.INPUT_PORTS_0_0);
             go.AddOrGet<LogicOperationalController>();
             go.AddOrGetDef<PoweredActiveController.Def>();
             BuildingTemplates.DoPostConfigure(go);

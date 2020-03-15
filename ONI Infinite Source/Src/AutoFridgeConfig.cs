@@ -32,20 +32,10 @@ namespace BrisInfiniteSources
             buildingDef.PermittedRotations = PermittedRotations.R360;
             SoundEventVolumeCache.instance.AddVolume("fridge_kanim", "Refrigerator_open", TUNING.NOISE_POLLUTION.NOISY.TIER1);
             SoundEventVolumeCache.instance.AddVolume("fridge_kanim", "Refrigerator_close", TUNING.NOISE_POLLUTION.NOISY.TIER1);
-
+            buildingDef.LogicInputPorts = LogicOperationalController.CreateSingleInputPortList(new CellOffset(0, 0));
             return buildingDef;
         }
 
-        public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
-        {
-            
-            GeneratedBuildings.RegisterLogicPorts(go, AutoFridgeConfig.OUTPUT_PORT);
-
-        }
-        public override void DoPostConfigureUnderConstruction(GameObject go)
-        {
-            GeneratedBuildings.RegisterLogicPorts(go, AutoFridgeConfig.OUTPUT_PORT);
-        }
         public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
         {
             //go.AddOrGet<Refrigerator>();
@@ -54,7 +44,6 @@ namespace BrisInfiniteSources
 
         public override void DoPostConfigureComplete(GameObject go)
         {
-            GeneratedBuildings.RegisterLogicPorts(go, AutoFridgeConfig.OUTPUT_PORT);
             Storage storage = go.AddOrGet<Storage>();
             storage.showInUI = true;
             storage.showDescriptor = true;
