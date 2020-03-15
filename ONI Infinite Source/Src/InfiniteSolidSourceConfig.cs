@@ -59,8 +59,8 @@ namespace BrisInfiniteSources
             storage.showDescriptor = true;
             storage.fetchCategory = Storage.FetchCategory.GeneralStorage;
             List<Tag> tagList = new List<Tag>();
-            tagList.AddRange(STORAGEFILTERS.NOT_EDIBLE_SOLIDS);
-            tagList.AddRange(STORAGEFILTERS.FOOD);
+            tagList.AddRange((IEnumerable<Tag>)STORAGEFILTERS.NOT_EDIBLE_SOLIDS);
+            tagList.AddRange((IEnumerable<Tag>)STORAGEFILTERS.FOOD);
             storage.storageFilters = tagList;
             CopyBuildingSettings copyBuildingSettings = go.AddOrGet<CopyBuildingSettings>();
             copyBuildingSettings.copyGroupTag = GameTags.StorageLocker;
